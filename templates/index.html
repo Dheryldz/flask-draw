@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CORAT CORET</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+  </head>
+  <body>
+    <div class="toolbar">
+      <input type="color" id="colorPicker" class="tool" />
+      <input
+        type="range"
+        id="brushSize"
+        min="1"
+        max="20"
+        value="3"
+        class="tool"
+      />
+      <button id="eraser" class="tool">🧽</button>
+      <button id="undo" class="tool">↩️</button>
+      <button id="redo" class="tool">↪️</button>
+      <button id="clear" class="tool">🗑️</button>
+      <button id="save" class="tool">💾</button>
+    </div>
+
+    <canvas id="drawCanvas"></canvas>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  </body>
+</html>
