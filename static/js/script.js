@@ -11,12 +11,19 @@ ctx.strokeStyle = "#000";
 let drawing = false;
 let paths = [];
 let redoStack = [];
-let lastX = 0,
-  lastY = 0;
+let lastX = 0, lastY = 0;
 
 canvas.addEventListener("mousedown", startDraw);
 canvas.addEventListener("mouseup", stopDraw);
 canvas.addEventListener("mousemove", draw);
+
+// Menambahkan event untuk touchscreen
+canvas.addEventListener("touchstart", (e) => startDraw(e.touches[0]));
+canvas.addEventListener("touchend", stopDraw);
+canvas.addEventListener("touchmove", (e) => {
+  e.preventDefault(); // Mencegah scroll saat menggambar
+  draw(e.touches[0]);
+});
 
 function startDraw(event) {
   drawing = true;
@@ -55,7 +62,7 @@ function draw(event) {
   lastY = y;
 }
 
-// Fungsi mendapatkan posisi mouse dengan akurat
+// Fungsi mendapatkan posisi mouse/touch dengan akurat
 function getMousePos(event) {
   const rect = canvas.getBoundingClientRect();
   return {
